@@ -13,7 +13,7 @@ The data is retrieved directly from Riot APIs using [RiotWatcher](https://github
 pip install -r requirements.txt
 ```
 
-## Setting up API key
+## Setting up the API key
 To being able to use this script you must get an API key from [Riot Games](https://developer.riotgames.com/). To use it you need to put it in a file called ".env" on the script folder this way:
 ```
 API_KEY="RGAPI-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
@@ -21,11 +21,11 @@ API_KEY="RGAPI-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
 
 
 ## Building the dataset
-To build the .json database you need to run the function build_dataset(). This function accepts an optional parameter: use_player_list The main.py contains an example of a complete set of commands to build the dataset and exporting it to 
+To build the .json dataset you need to run the function "build_dataset()". If you want to build a players list beforehand, run the function "build_players_list()" and set the argument "use_players_list" to True.
 
 
 ## Exporting the dataset to .csv
-To export the data inside the .json database [...]
+To export the data inside the .json database use the function "export_dataset()".
 
 ### CSV details
 The .csv file won't have an header. Each row contains all the data about one or both teams, the last element being the result. 
