@@ -1,28 +1,28 @@
 # LoL Crawler
-This is a data collector script that makes use of [RiotWatcher](https://github.com/pseudonym117/Riot-Watcher) to build a dataset containing specific data about each participant of a match. Those data are meant to feed a Neural Network to try to predict the outcome of a match starting from those data.
+This is a data collector script based on [RiotWatcher](https://github.com/pseudonym117/Riot-Watcher) to build a dataset containing specific data about each participant of a match. Those data are meant to feed an ML implementation to try to predict the outcome of a match starting from those data.
 
 # Getting Started
 ## About the data collected
-The data is retrieved directly from Riot APIs using 6 [RiotWatcher](https://github.com/pseudonym117/Riot-Watcher), a 7 really useful wrapper written in Python that implements a 8 naive rate limiter, which is needed since the free API Key that 9 Riot provides is limited 20 requests per 1 minute and 100 10 requests per 2 minutes 11 ([source](https://developer.riotgames.com/docs/portal)). 12 All data is therefore of public domain and so it can be accessed 13 by anyone.
+The data is retrieved directly from Riot APIs using [RiotWatcher](https://github.com/pseudonym117/Riot-Watcher), a really useful wrapper written in Python that implements a naive rate limiter, which is needed since the free API Key that Riot provides is limited to 20 requests per 1 minute and 100 requests per 2 minutes ([source](https://developer.riotgames.com/docs/portal)). All data is therefore of public domain and so it can be accessed 13 by anyone.
 
 ## Requirements
-[Python Dotenv Library](https://pypi.org/project/python-dotenv) 9 is needed to load the environment variables (for this project, 10 the API key).
+[Python Dotenv Library](https://pypi.org/project/python-dotenv) is needed to load the environment variables (in this case the API key).
 
-[RiotWatcher](https://github.com/pseudonym117/Riot-Watcher) is
-needed to do the API calls.
+[RiotWatcher](https://github.com/pseudonym117/Riot-Watcher) is needed to do the API calls.
 ```
 pip install -r requirements.txt
 ```
 
 ## Setting up API key
-To being able to use this script you must get an API key from 18 [Riot Games](https://developer.riotgames.com/). To use it you 19 need to put it in a file called ".env" on the script folder this way:
+To being able to use this script you must get an API key from [Riot Games](https://developer.riotgames.com/). To use it you need to put it in a file called ".env" on the script folder this way:
 ```
 API_KEY="RGAPI-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
 ```
 
 
 ## Building the dataset
-To build the .json database you need to run the function build_player_list(). 25 The main.py contains an example of a complete set of commands to build the dataset 26 and exporting it to 
+To build the .json database you need to run the function build_dataset(). This function accepts an optional parameter: use_player_list The main.py contains an example of a complete set of commands to build the dataset and exporting it to 
+
 
 ## Exporting the dataset to .csv
 To export the data inside the .json database [...]
