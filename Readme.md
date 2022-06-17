@@ -3,7 +3,7 @@ This is a data collector script based on [RiotWatcher](https://github.com/pseudo
 
 # Getting Started
 ## About the data collected
-The data is retrieved directly from Riot APIs using [RiotWatcher](https://github.com/pseudonym117/Riot-Watcher), a really useful wrapper written in Python that implements a naive rate limiter, which is needed since the free API Key that Riot provides is limited to 20 requests per 1 minute and 100 requests per 2 minutes ([source](https://developer.riotgames.com/docs/portal)). All data is therefore of public domain and so it can be accessed 13 by anyone.
+The data is retrieved directly from Riot APIs using [RiotWatcher](https://github.com/pseudonym117/Riot-Watcher), a really useful wrapper written in Python that implements a naive rate limiter, which is needed since the free API Key that Riot provides is limited to 20 requests per 1 minute and 100 requests per 2 minutes ([source](https://developer.riotgames.com/docs/portal)). All data is therefore of public domain and so it can be accessed by anyone.
 
 ## Requirements
 [Python Dotenv Library](https://pypi.org/project/python-dotenv) is needed to load the environment variables (in this case the API key).
