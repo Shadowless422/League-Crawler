@@ -1,10 +1,20 @@
 # LoL Crawler
 This is a data collector script based on [RiotWatcher](https://github.com/pseudonym117/Riot-Watcher) to build a dataset containing specific data about each participant of a match. Those data are meant to feed an ML implementation to try to predict the outcome of a match starting from those data.
-
-# Getting Started
 ## About the data collected
 The data is retrieved directly from Riot APIs using [RiotWatcher](https://github.com/pseudonym117/Riot-Watcher), a really useful wrapper written in Python that implements a naive rate limiter, which is needed since the free API Key that Riot provides is limited to 20 requests per 1 minute and 100 requests per 2 minutes ([source](https://developer.riotgames.com/docs/portal)). All data is therefore of public domain and so it can be accessed by anyone.
 
+## Features of each player
+The features of each player of a match are retrieved by the method of the class Player called “get_useful_infos_from_match_history”. These are data collected from a number of matches that are set on settings.py that happened before the analyzed match in the same queue:
+* number of games won by the player
+* number of games lost by the player
+* average maximum bounty level
+* average gold per second
+* average kill participation
+* average ratio of time spent living throughout the match
+
+The choice of the features was dictated by the need for them to be as less influenced as possible by the specific position. Features like the damage score and the ally healing are certainly indicative of the performance of a player but depend too much on factors like the champion and the role of the player in the team.
+
+# Getting Started
 ## Requirements
 [Python Dotenv Library](https://pypi.org/project/python-dotenv) is needed to load the environment variables (in this case the API key).
 

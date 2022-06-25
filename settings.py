@@ -13,5 +13,9 @@ target_matches = 5000
 
 # Loading API key
 load_dotenv()
-api_key = os.getenv("API_KEY")
+try:
+    api_key = os.getenv("API_KEY")
+except:
+    print("There was an error loading your api key, make sure you add it into .env")
+    exit(1)
 

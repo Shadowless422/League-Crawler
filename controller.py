@@ -150,28 +150,27 @@ def build_dataset(database_name: str = settings.db_filename, use_players_list: b
     :param database_name:
     :param use_players_list: if true, the function will use the players list to get a new player instead of randomly
            getting one each iteration (and so wasting a lot of api calls)
-    :return:
+    :return: the dataset as a Dataset object
     """
     dataset = MatchesDataset(database_name)
     player = Player(name=settings.name)
     players_list = PlayersList() if use_players_list else None
 
-    # Setting up time variables
     info = Info()
+    info.display(target_matches=settings.target_matches, saved_matches=dataset.matches_count())
 
     # MAIN LOOP
     while dataset.matches_count() < settings.target_matches:
-        # Printing info
-        info.display(target_matches=settings.target_matches, saved_matches=dataset.matches_count())
-
         # Getting a new player
         if players_list:
             try:
                 player = Player(puuid=players_list.pop())
             except KeyError:
-                print(f"Not enough players in players list to get all matches requested."
-                      f"Only {dataset.matches_count()} matches retrieved out of {settings.target_matches}")
-                return
+                print(
+                    f"Not enough players in players list to get all matches requested."
+                    f"Only {dataset.matches_count()} matches retrieved out of {settings.target_matches}"
+                )
+                break
         else:
             player = get_new_player(player)
 
@@ -189,10 +188,11 @@ def build_dataset(database_name: str = settings.db_filename, use_players_list: b
         dataset.add_match(match.id, data)
 
         # Updating info since the iteration went through with no problems
-        info.update()
+        info.update().display(target_matches=settings.target_matches, saved_matches=dataset.matches_count())
 
+    return dataset
 
-def build_player_list(number_of_players: int = settings.target_matches):
+def build_players_list(number_of_players: int = settings.target_matches):
     """
     This function builds a players list file (or expands the existing one) and fills it with puuids of different players
     to be used inside the build_dataset function.
@@ -220,4 +220,4 @@ def build_player_list(number_of_players: int = settings.target_matches):
             if not match.has_info():
                 continue
 
-            players_list.add(*match.info["metadata"]["participants"])
+            players_list.add(*match.info["metadata"]["participants"])  # adding a list of puuids
